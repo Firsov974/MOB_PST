@@ -1,0 +1,20 @@
+{
+  "name": "zsb_hr_mob_pst",
+  "version": "1.0.0",
+  "description": "Paystubs on mobile",
+  "main": "Component.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://sbt-shishkov-ay@stash.ca.sbrf.ru/scm/esse_mob/zsb_hr_mob_pst.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.16.0",
+    "eslint-plugin-json": "^1.2.0",
+    "grunt-openui5": "^0.12.0"
+  }
+}

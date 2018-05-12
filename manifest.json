@@ -1,0 +1,135 @@
+{
+      "_version": "1.1.0",
+      "sap.app": {
+            "_version": "1.1.0",
+            "id": "sbt.mob.pst",
+            "type": "application",
+            "i18n": "i18n/i18n.properties",
+            "title": "{{appTitle}}",
+            "description": "",
+            "applicationVersion": {
+                  "version": "1.0.0"
+            },
+            "dataSources": {
+                  "mainService": {
+                        "uri": "proxy/sap/opu/odata/sap/ZSB_HR_MOB_PST_SRV",
+                        "type": "OData",
+                        "settings": {
+                              "odataVersion": "2.0"
+                        }
+                  }
+            }
+      },
+      "sap.ui": {
+            "_version": "1.1.0",
+            "technology": "UI5",
+            "deviceTypes": {
+                  "tablet": true,
+                  "phone": true
+            },
+            "supportedThemes": [
+                  "sbt_sberbank_base"
+            ]
+      },
+      "sap.ui5": {
+            "_version": "1.2.0",
+            "autoPrefixId": true,
+            "dependencies": {
+                  "minUI5Version": "1.30",
+                  "libs": {
+                        "sap.ui.core": {
+                              "minVersion": "1.30.0"
+                        },
+                        "sap.m": {
+                              "minVersion": "1.30.0"
+                        },
+                        "sap.ui.layout": {
+                              "minVersion": "1.30.0"
+                        },
+                           "sbt.mob.lib": {
+                                  "minVersion": "1.30.0"
+                            }
+                  }
+            },
+            "models": {
+                  "i18n": {
+                        "type": "sap.ui.model.resource.ResourceModel",
+                        "settings": {
+                              "bundleName": "sbt.mob.pst.i18n.i18n"
+                        }
+                  },
+                  "": {
+                        "type": "sap.ui.model.odata.v2.ODataModel",
+                        "dataSource": "mainService",
+                        "settings": {
+                              "metadataUrlParams": {
+                                    "sap-documentation": "heading"
+                              },
+                              "useBatch": false,
+                              "defaultCountMode": "Inline"
+                        }
+                  }
+            },
+            "resources": {
+                  "css": [
+                        {
+                              "uri": "css/style.css"
+                        }
+                  ]
+            },
+            "rootView": "sbt.mob.pst.view.App",
+            "routing": {
+                  "config": {
+                        "routerClass": "sap.m.routing.Router",
+                        "viewType": "XML",
+                        "viewPath": "sbt.mob.pst.view",
+                        "controlId": "idAppControl",
+                        "controlAggregation": "pages"
+                  },
+                  "routes": [
+                        {
+							"pattern": "",
+							"name": "master",
+							"target": ["object", "master"]
+						},
+                        {
+                            "pattern": "NoObjects",
+                            "name": "noObjects",
+                            "target": ["master", "noObjectsAvailable"]
+                        }
+                  ],
+                  "targets": {
+                    "master": {
+						"viewName": "Master",
+						"viewLevel": 1,
+						"viewId": "master",
+						"controlAggregation": "masterPages"
+					},
+					"object": {
+						"viewName": "Detail",
+						"viewId": "detail",
+						"viewLevel": 2,
+						"controlAggregation": "detailPages"
+					},
+                    "messages": {
+                        "viewName": "Messages",
+                        "viewId": "messages",
+                        "viewLevel": 2,
+                        "controlAggregation": "detailPages"
+                    },
+                    "container": {
+                        "viewName": "Container",
+                        "viewId": "container",
+                        "viewLevel": 2,
+                        "controlAggregation": "detailPages"
+                    },
+                    "noObjectsAvailable": {
+                        "viewName": "DetailNoObjectsAvailable",
+						"viewId": "detailNoObjects",
+						"viewLevel": 2,
+						"controlAggregation": "detailPages"
+                    }
+                  }
+            }
+      }
+}
